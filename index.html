@@ -142,8 +142,18 @@
       color: var(--white);
       transform: translateY(-2px);
     }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .hero-cta .btn-outline {
+      margin-left: 0;
+    }
     .hero-stats {
-      display: flex; gap: 48px;
+      display: flex; gap: 32px;
+      flex-wrap: wrap;
       margin-top: 80px;
       padding-top: 48px;
       border-top: 1px solid var(--border);
@@ -466,7 +476,7 @@
       <p class="hero-sub">We build clean, professional websites for local service businesses — designed to bring in calls, not just look pretty.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
-        <a href="#portfolio" class="btn btn-outline">See Our Work</a>
+        <a href="#portfolio" class="btn btn-outline" style="margin-left:0;">See Our Work</a>
       </div>
       <div class="hero-stats">
         <div>
@@ -604,7 +614,7 @@
         <div class="contact-info">
           <h3>Free quote, no pressure.</h3>
           <p>Tell me a little about your business and what you're looking for. I'll get back to you within 24 hours with a clear answer and honest price.</p>
-          <div class="contact-detail"><strong>Email:</strong> &nbsp;marc@cleverwebco.com</div>
+          <div class="contact-detail"><strong>Email:</strong> &nbsp;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e18c809382a1828d84978493968483828ecf828e8c">[email&#160;protected]</a></div>
           <div class="contact-detail"><strong>Response time:</strong> &nbsp;Within 24 hours</div>
         </div>
         <form class="contact-form" onsubmit="handleSubmit(event)">
@@ -657,24 +667,10 @@
   <footer>
     <div class="footer-logo">Clever Web <span>Co</span></div>
     <div>© 2026 Clever Web Co. All rights reserved.</div>
-    <div>marc@cleverwebco.com</div>
+    <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="701d11021330131c15061502071512131f5e131f1d">[email&#160;protected]</a></div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = 'Message Sent!';
-      btn.style.background = '#2D6B45';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Send Message';
-        btn.style.background = '';
-        btn.disabled = false;
-        e.target.reset();
-      }, 3000);
-    }
-  </script>
-
-</body>
-</html>
+      const btn = e.t
