@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clever Web Co — Websites for Local Businesses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF7F2;
+      --white: #FFFFFF;
+      --ink: #1A1A18;
+      --ink-light: #4A4A45;
+      --accent: #C8873A;
+      --accent-light: #F0D9BF;
+      --border: #E5E0D8;
+      --section-gap: 120px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 60px;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 140px 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -100px; right: -150px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 32px; height: 2px; background: var(--accent);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      max-width: 800px;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--ink-light);
+      max-width: 500px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-block;
+      padding: 16px 36px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      margin-left: 16px;
+    }
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .hero-stats {
+      display: flex; gap: 48px;
+      margin-top: 80px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--ink-light);
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: var(--section-gap) 60px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--ink-light);
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+      border: 2px solid var(--ink);
+    }
+    .service-card {
+      padding: 48px 40px;
+      background: var(--white);
+      border-right: 2px solid var(--ink);
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card:last-child { border-right: none; }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover { background: var(--cream); }
+    .service-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .service-desc {
+      font-size: 0.92rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .service-price {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .service-price span {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--ink-light);
+    }
+
+    /* ── PORTFOLIO ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 60px;
+    }
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.1);
+    }
+    .portfolio-thumb {
+      height: 240px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .portfolio-thumb.tax {
+      background: linear-gradient(135deg, #1B3A5C 0%, #2E6DA4 100%);
+    }
+    .portfolio-thumb.plumb {
+      background: linear-gradient(135deg, #1C3826 0%, #2D6B45 100%);
+    }
+    .portfolio-thumb.hvac {
+      background: linear-gradient(135deg, #3D1C1C 0%, #8B3A3A 100%);
+    }
+    .portfolio-thumb.landscape {
+      background: linear-gradient(135deg, #2A3D1C 0%, #5A8B3A 100%);
+    }
+    .portfolio-info { padding: 28px 32px; }
+    .portfolio-tag {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .portfolio-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .portfolio-desc {
+      font-size: 0.88rem; color: var(--ink-light); line-height: 1.6;
+    }
+    .portfolio-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 16px;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .portfolio-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--ink); color: var(--white); }
+    #about .section-title { color: var(--white); }
+    #about .section-label { color: var(--accent); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .about-text p {
+      font-size: 1rem; font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+    .about-highlights { display: flex; flex-direction: column; gap: 24px; }
+    .highlight {
+      padding: 28px 32px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .highlight:hover {
+      border-color: var(--accent);
+      background: rgba(200,135,58,0.06);
+    }
+    .highlight-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .highlight-desc {
+      font-size: 0.88rem; font-weight: 300;
+      color: rgba(255,255,255,0.6); line-height: 1.6;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 60px;
+    }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .contact-info p {
+      font-size: 0.95rem; font-weight: 300;
+      color: var(--ink-light); line-height: 1.75; margin-bottom: 32px;
+    }
+    .contact-detail {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+      font-size: 0.9rem; color: var(--ink-light);
+    }
+    .contact-detail strong { color: var(--ink); }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-light);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { height: 130px; }
+    .form-submit { align-self: flex-start; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      padding: 40px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+    }
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--white);
+    }
+    footer .footer-logo span { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+    .hero h1 { animation: fadeUp 0.7s ease 0.1s both; }
+    .hero-sub { animation: fadeUp 0.7s ease 0.2s both; }
+    .hero-cta { animation: fadeUp 0.7s ease 0.3s both; }
+    .hero-stats { animation: fadeUp 0.7s ease 0.4s both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      section, .hero { padding-left: 24px; padding-right: 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 2px solid var(--ink); }
+      .service-card:last-child { border-bottom: none; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Clever Web <span>Co</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Web Design for Local Businesses</div>
+      <h1>Your business deserves a <em>website that works.</em></h1>
+      <p class="hero-sub">We build clean, professional websites for local service businesses — designed to bring in calls, not just look pretty.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+        <a href="#portfolio" class="btn btn-outline">See Our Work</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">Fast</div>
+          <div class="stat-label">2-week turnaround</div>
+        </div>
+        <div>
+          <div class="stat-num">Local</div>
+          <div class="stat-label">Built for your market</div>
+        </div>
+        <div>
+          <div class="stat-num">Simple</div>
+          <div class="stat-label">No tech headaches</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Simple, honest pricing.</h2>
+      <p class="section-desc">No surprise fees. No monthly retainers unless you want one. Just great websites at fair prices.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <div class="service-name">Starter Site</div>
+          <p class="service-desc">A clean, mobile-friendly 3-page website. Perfect for getting online and looking professional fast.</p>
+          <div class="service-price">$499 <span>one-time</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <div class="service-name">Business Site</div>
+          <p class="service-desc">A full 5–7 page website with contact forms, photo galleries, and Google Maps integration.</p>
+          <div class="service-price">$999 <span>one-time</span></div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <div class="service-name">Care Plan</div>
+          <p class="service-desc">Monthly updates, hosting management, and priority support so you never have to worry about your site.</p>
+          <div class="service-price">$79 <span>/month</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="section-inner">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title">Sites built for real businesses.</h2>
+      <p class="section-desc">Every site is custom-designed for the industry and audience — not a generic template.</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="portfolio-thumb tax">Express Tax</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Tax Services</div>
+            <div class="portfolio-name">Express Tax Returns</div>
+            <p class="portfolio-desc">A clean, trustworthy site for a local tax preparation firm focused on converting first-time visitors into booked appointments.</p>
+            <a href="https://cleverwebco.github.io/expresstaxreturns" target="_blank" class="portfolio-link">View Live Site →</a>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-thumb plumb">FlowRight</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Plumbing</div>
+            <div class="portfolio-name">FlowRight Plumbing Co.</div>
+            <p class="portfolio-desc">A mobile-first site for a residential plumber with click-to-call, service areas, and emergency contact prominently featured.</p>
+            <a href="#" class="portfolio-link">Coming Soon →</a>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-thumb hvac">AirPro</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">HVAC</div>
+            <div class="portfolio-name">AirPro Heating & Cooling</div>
+            <p class="portfolio-desc">Seasonal promotion pages, online quote requests, and a service area map for a local HVAC contractor.</p>
+            <a href="#" class="portfolio-link">Coming Soon →</a>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-thumb landscape">GreenLine</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Landscaping</div>
+            <div class="portfolio-name">GreenLine Landscaping</div>
+            <p class="portfolio-desc">A photo-forward portfolio site for a landscaping company showcasing before/afters and a simple estimate request form.</p>
+            <a href="#" class="portfolio-link">Coming Soon →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-label">About</div>
+      <h2 class="section-title">Built by someone who gets it.</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>Hi, I'm Marc — the person behind Clever Web Co. I build websites specifically for local service businesses who need something professional, affordable, and hassle-free.</p>
+          <p>I know you're busy running your business. You don't have time to deal with tech problems, confusing contracts, or waiting weeks for a callback. That's why I keep things simple — clear pricing, fast turnaround, and a site that actually helps you get more customers.</p>
+          <p>Every site I build is custom-designed, mobile-friendly, and built to load fast. No bloated page builders, no templates that look like everyone else's.</p>
+          <a href="#contact" class="btn btn-primary" style="margin-top: 16px;">Let's Talk</a>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight">
+            <div class="highlight-title">Fast Turnaround</div>
+            <p class="highlight-desc">Most sites are live within 2 weeks. You'll have a real working website before your next billing cycle.</p>
+          </div>
+          <div class="highlight">
+            <div class="highlight-title">Mobile-First Design</div>
+            <p class="highlight-desc">Over 60% of local searches happen on phones. Every site I build looks great and loads fast on mobile.</p>
+          </div>
+          <div class="highlight">
+            <div class="highlight-title">No Contracts Required</div>
+            <p class="highlight-desc">Pay once and own your site. No lock-ins, no gotchas. The Care Plan is month-to-month if you want it.</p>
+          </div>
+          <div class="highlight">
+            <div class="highlight-title">You Own Everything</div>
+            <p class="highlight-desc">Your domain, your hosting, your content — it all belongs to you. I'm just here to build and support it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's build something great.</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Free quote, no pressure.</h3>
+          <p>Tell me a little about your business and what you're looking for. I'll get back to you within 24 hours with a clear answer and honest price.</p>
+          <div class="contact-detail"><strong>Email:</strong> &nbsp;marc@cleverwebco.com</div>
+          <div class="contact-detail"><strong>Response time:</strong> &nbsp;Within 24 hours</div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="John Smith" required />
+            </div>
+            <div class="form-group">
+              <label>Business Name</label>
+              <input type="text" placeholder="Smith Plumbing" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="john@smithplumbing.com" required />
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" placeholder="(555) 000-0000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>What type of business?</label>
+            <select>
+              <option value="">Select your industry...</option>
+              <option>Plumbing</option>
+              <option>HVAC</option>
+              <option>Landscaping / Lawn Care</option>
+              <option>Roofing</option>
+              <option>Electrical</option>
+              <option>Tax / Accounting</option>
+              <option>Cleaning Services</option>
+              <option>General Contractor</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell me about your project</label>
+            <textarea placeholder="Do you have an existing site? What's most important — getting calls, looking professional, showing your work?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Clever Web <span>Co</span></div>
+    <div>© 2026 Clever Web Co. All rights reserved.</div>
+    <div>marc@cleverwebco.com</div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Message Sent!';
+      btn.style.background = '#2D6B45';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
