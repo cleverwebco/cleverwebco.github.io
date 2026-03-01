@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; max-width: 100%; }
 
     :root {
       --cream: #FAF7F2;
@@ -300,7 +301,9 @@
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .hero-cta { justify-content: center; }
-      .form-submit { align-self: center; width: 100%; text-align: center; }
+      .form-submit { align-self: stretch; text-align: center; box-sizing: border-box; }
+      .contact-form { width: 100%; box-sizing: border-box; }
+      .form-group input, .form-group select, .form-group textarea { width: 100%; box-sizing: border-box; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
